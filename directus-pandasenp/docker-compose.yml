@@ -1,0 +1,60 @@
+version: '3'
+networks:
+  default:
+    name: ${STACK_PRFX}
+
+services:
+  # Database
+  database:
+    container_name: ${STACK_PRFX}-database
+    image: mysql:8.0
+    ports:
+      - ${MYSQL_PORTS}
+    volumes:
+      - ${MYSQL_DATA_DIR}
+    command:
+      [
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+        "--default-authentication-plugin=mysql_native_password",
+      ]
+    env_file:
+      - .env
+  # Cache
+  cache:
+    container_name: ${STACK_PRFX}-cache
+    image: redis:7.0-alpine
+
+  # Directus
+  directus:
+    depends_on:
+      - cache
+      - database
+    container_name: ${STACK_PRFX}-directus
+    image: directus/directus:${DIRECTUS_VERSION}
+    ports:
+      - ${DIRECTUS_PORTS}
+    volumes:
+      - ${DIRECTUS_STORAGE_UPLOADS}
+      - ${DIRECTUS_STORAGE_DATABASE}
+    # restart: unless-stopped
+    environment:
+      PUBLIC_URL: ${DIRECTUS_PUBLIC_URL}
+      KEY: ${DIRECTUS_KEY}
+      SECRET: ${DIRECTUS_SECRET}
+
+      DB_CLIENT: ${DIRECTUS_DB_CLIENT}
+      DB_FILENAME: ${DIRECTUS_DB_FILENAME}
+      
+      DB_HOST: ${DIRECTUS_DB_HOST}
+      DB_PORT: ${DIRECTUS_DB_PORT}
+      DB_DATABASE: ${DIRECTUS_DB_DATABASE}
+      DB_USER: ${DIRECTUS_DB_USER}
+      DB_PASSWORD: ${DIRECTUS_DB_PASSWORD}
+
+      ADMIN_EMAIL: ${DIRECTUS_ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${DIRECTUS_ADMIN_PASSWORD}
+
+      CACHE_ENABLED: ${DIRECTUS_CACHE_ENABLED}
+      CACHE_STORE: ${DIRECTUS_CACHE_STORE}
+      CACHE_REDIS: ${DIRECTUS_CACHE_REDIS}
