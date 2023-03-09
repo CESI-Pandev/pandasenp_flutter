@@ -1,5 +1,6 @@
 import 'package:directus/directus.dart';
 import 'package:flutter/material.dart';
+import 'package:pandasenp_flutter/Pages/Welcome.dart';
 import 'package:pandasenp_flutter/directus/directus.dart';
 import 'package:pandasenp_flutter/env.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: WelcomePage(),
     );
   }
 }
