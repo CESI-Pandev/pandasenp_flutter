@@ -11,7 +11,10 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.black.withOpacity(0.7),
       ),
       body: const Text(
-        "Voici la home page !!"
+        "Voici la home page !!",
+        style: TextStyle(
+          color: Colors.black,
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

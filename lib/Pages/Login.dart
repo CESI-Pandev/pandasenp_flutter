@@ -24,6 +24,7 @@ class LoginPage extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(
@@ -34,6 +35,7 @@ class LoginPage extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(
@@ -57,6 +59,12 @@ class LoginPage extends StatelessWidget {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      style: TextStyle(
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -83,6 +91,12 @@ class LoginPage extends StatelessWidget {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Password',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      style: TextStyle(
+                        color: Colors.black,
                       ),
                     ),
                   ),

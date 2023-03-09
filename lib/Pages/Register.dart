@@ -23,6 +23,7 @@ class RegisterPage extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(
@@ -33,6 +34,7 @@ class RegisterPage extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(
@@ -56,6 +58,12 @@ class RegisterPage extends StatelessWidget {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Username',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      style: TextStyle(
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -81,6 +89,12 @@ class RegisterPage extends StatelessWidget {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      style: TextStyle(
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -107,6 +121,12 @@ class RegisterPage extends StatelessWidget {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Password',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      style: TextStyle(
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -129,9 +149,16 @@ class RegisterPage extends StatelessWidget {
                   child: const Padding(
                     padding: EdgeInsets.only(left: 20.0),
                     child: TextField(
+                      obscureText: true,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Retype password',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      style: TextStyle(
+                        color: Colors.black,
                       ),
                     ),
                   ),
