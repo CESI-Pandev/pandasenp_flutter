@@ -3,6 +3,8 @@ import 'package:pandasenp_flutter/pages/home.dart';
 import 'package:pandasenp_flutter/pages/register.dart';
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -124,6 +126,7 @@ class LoginPage extends StatelessWidget {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
                       },
                       style: ElevatedButton.styleFrom(
+                        
                         primary: Colors.black.withOpacity(0.7),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),

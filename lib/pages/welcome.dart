@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/pages/login.dart';
 
 class WelcomePage extends StatelessWidget {
+  const WelcomePage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class WelcomePage extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 400,
                 child: Image.asset(
                   'images/logo.png',
@@ -25,10 +27,10 @@ class WelcomePage extends StatelessWidget {
               const SizedBox(
                 height: 120,
               ),
-              Container(
+              const SizedBox(
                 height: 40,
                 width: double.infinity,
-                child: const Text(
+                child: Text(
                   "Venez apprendre avec nous et des milliers d'autres personnes",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -41,7 +43,7 @@ class WelcomePage extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
-              Container(
+              SizedBox(
                 height: 70,
                 width: double.infinity,
                 child: ElevatedButton(
