@@ -19,7 +19,7 @@ services:
         "--default-authentication-plugin=mysql_native_password",
       ]
     env_file:
-      - .env
+      - ..env
   # Cache
   cache:
     container_name: ${STACK_PRFX}-cache
