@@ -1,7 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:directus/directus.dart';
 import 'package:flutter/material.dart';
-import 'package:pandasenp_flutter/controllers/auth/auth.dart';
+import 'package:pandasenp_flutter/controllers/auth.dart';
+import 'package:pandasenp_flutter/directus/directus.dart';
 import 'package:pandasenp_flutter/pages/home.dart';
 import 'package:pandasenp_flutter/pages/register.dart';
 
@@ -21,6 +21,8 @@ class LoginPage extends StatelessWidget {
         email: emailController.text,
         password: passwordController.text,
       );
+      directus!.auth.currentUser!.read().then((value) => debugPrint(value.data.toJson().toString()));
+      
       Navigator.pushReplacement(
         context!,
         MaterialPageRoute(
@@ -42,9 +44,9 @@ class LoginPage extends StatelessWidget {
       );
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: const Color(0xFFEDECF2),
       appBar: AppBar(
@@ -212,7 +214,6 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
-
             ],
           ),
         ),

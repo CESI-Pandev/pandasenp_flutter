@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:pandasenp_flutter/directus/directus.dart';
+import 'package:pandasenp_flutter/model/user.dart';
 
 class AuthController {
   
@@ -50,5 +51,14 @@ class AuthController {
       throw Exception('Directus not initialized');
     }
     return directus!.auth.isLoggedIn;
+  }
+
+  Future<User> get currentUser async {
+    if (directus == null) {
+      throw Exception('Directus not initialized');
+    }
+
+    
+    return User.fromJson((await directus!.auth.currentUser!.read()).data.toJson());
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pandasenp_flutter/pages/app_base.dart';
+import 'package:pandasenp_flutter/pages/profile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -6,43 +8,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFEDECF2),
-      appBar: AppBar(
-        title: const Text("Home"),
-        backgroundColor: Colors.black.withOpacity(0.7),
-      ),
-      body: const Text(
+    return const AppBase(
+      title: "Home",
+      body: Text(
         "Voici la home page !!",
         style: TextStyle(
           color: Colors.black,
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.black.withOpacity(0.9),
-        unselectedItemColor: Colors.grey,
-        iconSize: 20,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.publish_rounded),
-              label: 'Publish',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.chat),
-              label: 'chat',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-          ),
-        ],
-      ),
     );
   }
-
 }
