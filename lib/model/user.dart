@@ -1,8 +1,6 @@
-import 'package:pandasenp_flutter/controllers/file.dart';
-import 'package:pandasenp_flutter/model/file.dart';
+
 
 class User {
-  FileController fileController = FileController();
   final String id;
   final String email;
   final String firstName;
