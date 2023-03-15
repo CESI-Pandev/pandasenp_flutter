@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/pages/app_base.dart';
-import 'package:pandasenp_flutter/pages/profile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

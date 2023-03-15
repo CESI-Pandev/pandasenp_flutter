@@ -165,8 +165,7 @@ class LoginPage extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () => login(context: context),
                       style: ElevatedButton.styleFrom(
-                        
-                        primary: Colors.black.withOpacity(0.7),
+                        backgroundColor: Colors.black.withOpacity(0.7),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -198,7 +197,7 @@ class LoginPage extends StatelessWidget {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
+                        backgroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
