@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.green,
       ),
-      home: WelcomePage(),
+      home: const WelcomePage(),
     );
   }
 }
@@ -138,14 +138,14 @@ class PostCardWidget extends StatelessWidget {
               FittedBox(
                 child: Text(
                   title,
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headlineMedium,
                   // overflow: TextOverflow.ellipsis,
                 ),
               ),
               Flexible(
                 child: Text(
                   content,
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyLarge,
                   overflow: TextOverflow.fade,
                 ),
               ),
