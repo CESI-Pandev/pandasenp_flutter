@@ -1,10 +1,49 @@
+import 'package:directus/directus.dart';
 import 'package:flutter/material.dart';
+import 'package:pandasenp_flutter/controllers/auth.dart';
+import 'package:pandasenp_flutter/directus/directus.dart';
 import 'package:pandasenp_flutter/pages/home.dart';
 import 'package:pandasenp_flutter/pages/register.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
 
+class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  Future<void> login({
+    BuildContext? context,
+  }) async {
+    AuthController auth = AuthController();
+    try {
+      await auth.login(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      directus!.auth.currentUser!.read().then((value) => debugPrint(value.data.toJson().toString()));
+      
+      Navigator.pushReplacement(
+        context!,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
+    } on DirectusError catch (e) {
+      ScaffoldMessenger.of(context!).showSnackBar(
+        SnackBar(
+          content: Text(e.message.toString()),
+        ),
+      );
+    } catch (e) {
+      // show popup with error
+      ScaffoldMessenger.of(context!).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,17 +94,18 @@ class LoginPage extends StatelessWidget {
                     border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: emailController,
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email',
                         hintStyle: TextStyle(
                           color: Colors.grey,
                         ),
                       ),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                       ),
                     ),
@@ -86,18 +126,19 @@ class LoginPage extends StatelessWidget {
                     border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
+                      controller: passwordController,
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Password',
                         hintStyle: TextStyle(
                           color: Colors.grey,
                         ),
                       ),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                       ),
                     ),
@@ -122,12 +163,9 @@ class LoginPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-                      },
+                      onPressed: () => login(context: context),
                       style: ElevatedButton.styleFrom(
-                        
-                        primary: Colors.black.withOpacity(0.7),
+                        backgroundColor: Colors.black.withOpacity(0.7),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -156,10 +194,10 @@ class LoginPage extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
+                        backgroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -175,7 +213,6 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
-
             ],
           ),
         ),

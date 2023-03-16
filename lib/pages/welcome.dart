@@ -51,7 +51,7 @@ class WelcomePage extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black.withOpacity(0.7),
+                    backgroundColor: Colors.black.withOpacity(0.7),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
