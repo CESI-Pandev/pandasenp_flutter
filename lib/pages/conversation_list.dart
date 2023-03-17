@@ -10,20 +10,32 @@ class UserList extends StatefulWidget {
 
 class _UserListState extends State<UserList> {
   @override
-  Future<Widget> build(BuildContext context) async {
-    if (directus == null) {
-      throw Exception('Directus not initialized');
-    }
-    final users = await directus?.items('users').readMany();
-    final List<User> usersList = [];
-    users!.data.forEach((index, element) => usersList[index] = element)
-    // final users = Provider.of<List<User>>(context);
-    return ListView.builder(
-        itemCount: usersList.length,
-        itemBuilder: (context, index) {
-          return UserTile(usersList[index]);
-        });
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.none &&
+            snapshot.hasData == null) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        // final users =  directus?.items('users').readMany();
+        final List<User> usersList =
+            snapshot.data.map((e) => User.fromJson(e)).toList();
+        return ListView.builder(
+            itemCount: usersList.length,
+            itemBuilder: (context, index) {
+              return UserTile(usersList[index]);
+            });
+      },
+      future: getUsers(),
+    );
   }
+}
+
+Future getUsers() async {
+  var users = await directus?.items('users').readMany();
+  return users;
 }
 
 class UserTile extends StatelessWidget {
@@ -31,50 +43,52 @@ class UserTile extends StatelessWidget {
 
   UserTile(this.user);
   final AuthController auth = AuthController();
+
   @override
   Widget build(BuildContext context) {
-    FutureBuilder<User>(
-        future: auth.currentUser,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            User currentUser = snapshot.data!;
-            return GestureDetector(
-              onTap: () {
-                if (currentUser.id == user.id) return;
-                Navigator.pushNamed(context, '/chat',
-                    arguments: User(
-                        id: user.id,
-                        email: user.email,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        status: user.status));
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Card(
-                  margin: const EdgeInsets.only(
-                      top: 12.0, bottom: 6.0, left: 20.0, right: 20.0),
-                  child: ListTile(
-                    title: Text(user.firstName),
-                    subtitle: const Text('dernière envoi de la conversation'),
-                  ),
-                ),
+    return FutureBuilder<User>(
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.none &&
+            snapshot.hasData == null) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Text(
+              snapshot.error.toString(),
+              style: const TextStyle(
+                fontSize: 20,
               ),
-            );
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text(
-                snapshot.error.toString(),
-                style: const TextStyle(
-                  fontSize: 20,
-                ),
+            ),
+          );
+        }
+        User currentUser = snapshot.data!;
+        return GestureDetector(
+          onTap: () {
+            if (currentUser.id == user.id) return;
+            Navigator.pushNamed(context, '/chat',
+                arguments: User(
+                    id: user.id,
+                    email: user.email,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    status: user.status));
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Card(
+              margin: const EdgeInsets.only(
+                  top: 12.0, bottom: 6.0, left: 20.0, right: 20.0),
+              child: ListTile(
+                title: Text(user.firstName),
+                subtitle: const Text('dernière envoi de la conversation'),
               ),
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        });
+            ),
+          ),
+        );
+      },
+      future: auth.currentUser,
+    );
   }
 }
