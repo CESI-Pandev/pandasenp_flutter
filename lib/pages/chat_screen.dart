@@ -15,7 +15,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
 class ChatPage extends StatefulWidget {
-  const ChatPage({super.key});
+  final User user;
+  const ChatPage({super.key, required this.user});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -23,14 +24,8 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   List<types.Message> _messages = [];
-  final user = User(
-      id: '1',
-      email: 'm.dumont67@hotmail.com',
-      firstName: 'Maxime',
-      lastName: 'Dumont',
-      status: 'lost');
-  late final _user = types.User(id: user.id);
-  // final _user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
+  
+  late final _user = types.User(id: widget.user.id);
 
   @override
   void initState() {
