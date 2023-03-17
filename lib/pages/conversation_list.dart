@@ -13,15 +13,14 @@ class _UserListState extends State<UserList> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.none &&
+        if (snapshot.connectionState == ConnectionState.none ||
             snapshot.hasData == null) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
-        // final users =  directus?.items('users').readMany();
-        final List<User> usersList =
-            snapshot.data.map((e) => User.fromJson(e)).toList();
+        // final users =  directus?.items('user').readMany();
+        final List<User> usersList = snapshot.data;
         return ListView.builder(
             itemCount: usersList.length,
             itemBuilder: (context, index) {
@@ -34,7 +33,9 @@ class _UserListState extends State<UserList> {
 }
 
 Future getUsers() async {
-  var users = await directus?.items('users').readMany();
+  directus!.init();
+  var users = await directus?.items('user').readMany();
+  users!.data.map((e) => User.fromJson(e)).toList();
   return users;
 }
 

@@ -12,10 +12,10 @@ class AuthController {
       throw Exception('Directus not initialized');
     }
 
-    if (isLoggedIn) {
-      debugPrint('Already logged in');
-      throw Exception('User already logged in');
-    }
+    // if (isLoggedIn) {
+    //   debugPrint('Already logged in');
+    //   throw Exception('User already logged in');
+    // }
 
     await directus!.auth.login(
       email: email,
