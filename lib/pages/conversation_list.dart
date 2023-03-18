@@ -33,18 +33,18 @@ class _UserListState extends State<UserList> {
     return FutureBuilder<List<User>>(
       future: userController.getAll(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.none ||
-            !snapshot.hasData) {
+        if (snapshot.hasError) throw Exception(snapshot.error);
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
-        // final users =  directus?.items('user').readMany();
-        final List<User> usersList = snapshot.data!;
+        
+        final List<User> users = snapshot.data!;
         return ListView.builder(
-          itemCount: usersList.length,
+          itemCount: users.length,
           itemBuilder: (context, index) {
-            return UserTileWidget(user: usersList[index]);
+            return UserTileWidget(user: users[index]);
           },
         );
       },
