@@ -11,16 +11,16 @@ class UserList extends StatefulWidget {
 class _UserListState extends State<UserList> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<List<User>>(
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.none ||
-            snapshot.hasData == null) {
+            !snapshot.hasData) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
         // final users =  directus?.items('user').readMany();
-        final List<User> usersList = snapshot.data;
+        final List<User> usersList = snapshot.data!;
         return ListView.builder(
             itemCount: usersList.length,
             itemBuilder: (context, index) {
@@ -32,8 +32,8 @@ class _UserListState extends State<UserList> {
   }
 }
 
-Future getUsers() async {
-  directus!.init();
+Future <List<User>> getUsers() async {
+  // directus!.init();
   var users = await directus?.items('user').readMany();
   users!.data.map((e) => User.fromJson(e)).toList();
   return users;
