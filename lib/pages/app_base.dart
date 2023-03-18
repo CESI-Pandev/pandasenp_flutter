@@ -69,7 +69,7 @@ class AppBase extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>  UserList(),
+                  builder: (context) => const UserList(),
                 ),
               );
               break;

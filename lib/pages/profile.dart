@@ -54,7 +54,7 @@ class ProfilePage extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    currentUser.email,
+                    currentUser.email ?? '',
                     style: const TextStyle(
                       fontSize: 20,
                     ),
