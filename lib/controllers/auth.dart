@@ -3,6 +3,8 @@ import 'package:pandasenp_flutter/directus/directus.dart';
 import 'package:pandasenp_flutter/model/user.dart';
 
 class AuthController {
+
+  
   Future<void> login({
     required String email,
     required String password,

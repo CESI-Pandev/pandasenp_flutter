@@ -1,17 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:pandasenp_flutter/controllers/auth.dart';
+import 'package:pandasenp_flutter/controllers/user.dart';
 import 'package:pandasenp_flutter/model/user.dart';
-import 'package:pandasenp_flutter/directus/directus.dart';
+import 'package:pandasenp_flutter/widgets/user_tile.dart';
 
 class UserList extends StatefulWidget {
+  const UserList({super.key});
+
   @override
   _UserListState createState() => _UserListState();
 }
 
+class Test extends StatefulWidget {
+  const Test({super.key});
+
+  @override
+  State<Test> createState() => _TestState();
+}
+
+class _TestState extends State<Test> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
 class _UserListState extends State<UserList> {
+  UserController userController = UserController();
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<User>>(
+      future: userController.getAll(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.none ||
             !snapshot.hasData) {
@@ -22,74 +42,12 @@ class _UserListState extends State<UserList> {
         // final users =  directus?.items('user').readMany();
         final List<User> usersList = snapshot.data!;
         return ListView.builder(
-            itemCount: usersList.length,
-            itemBuilder: (context, index) {
-              return UserTile(usersList[index]);
-            });
-      },
-      future: getUsers(),
-    );
-  }
-}
-
-Future <List<User>> getUsers() async {
-  // directus!.init();
-  var users = await directus?.items('user').readMany();
-  users!.data.map((e) => User.fromJson(e)).toList();
-  return users;
-}
-
-class UserTile extends StatelessWidget {
-  final User user;
-
-  UserTile(this.user);
-  final AuthController auth = AuthController();
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<User>(
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.none &&
-            snapshot.hasData == null) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (snapshot.hasError) {
-          return Center(
-            child: Text(
-              snapshot.error.toString(),
-              style: const TextStyle(
-                fontSize: 20,
-              ),
-            ),
-          );
-        }
-        User currentUser = snapshot.data!;
-        return GestureDetector(
-          onTap: () {
-            if (currentUser.id == user.id) return;
-            Navigator.pushNamed(context, '/chat',
-                arguments: User(
-                    id: user.id,
-                    email: user.email,
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    status: user.status));
+          itemCount: usersList.length,
+          itemBuilder: (context, index) {
+            return UserTileWidget(user: usersList[index]);
           },
-          child: Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Card(
-              margin: const EdgeInsets.only(
-                  top: 12.0, bottom: 6.0, left: 20.0, right: 20.0),
-              child: ListTile(
-                title: Text(user.firstName),
-                subtitle: const Text('dernière envoi de la conversation'),
-              ),
-            ),
-          ),
         );
       },
-      future: auth.currentUser,
     );
   }
 }
