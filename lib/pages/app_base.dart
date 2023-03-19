@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pandasenp_flutter/pages/conversation_list.dart';
 import 'package:pandasenp_flutter/pages/home.dart';
 import 'package:pandasenp_flutter/pages/profile.dart';
 import 'package:pandasenp_flutter/pages/ressource_list.dart';
@@ -72,7 +73,7 @@ class AppBase extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const HomePage(),
+                  builder: (context) => const UserList(),
                 ),
               );
               break;

@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
         email: emailController.text,
         password: passwordController.text,
       );
-      directus!.auth.currentUser!.read().then((value) => debugPrint(value.data.toJson().toString()));
+      
       
       Navigator.pushReplacement(
         context!,
