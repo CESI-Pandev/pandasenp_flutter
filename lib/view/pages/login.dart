@@ -1,7 +1,6 @@
 import 'package:directus/directus.dart';
 import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/controllers/auth.dart';
-import 'package:pandasenp_flutter/directus/directus.dart';
 import 'package:pandasenp_flutter/view/pages/home.dart';
 import 'package:pandasenp_flutter/view/pages/register.dart';
 
@@ -21,7 +20,7 @@ class LoginPage extends StatelessWidget {
         email: emailController.text,
         password: passwordController.text,
       );
-      directus!.auth.currentUser!.read().then((value) => debugPrint(value.data.toJson().toString()));
+      
       
       Navigator.pushReplacement(
         context!,

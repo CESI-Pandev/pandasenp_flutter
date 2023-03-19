@@ -7,7 +7,6 @@ import 'package:pandasenp_flutter/env.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   directus = await Directus(Env.directusServer).init();
-  
   runApp(const MyApp());
 }
 

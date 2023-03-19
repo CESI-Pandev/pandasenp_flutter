@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/controllers/ressource.dart';
 import 'package:pandasenp_flutter/model/ressource.dart';
-import 'package:pandasenp_flutter/view/pages/app_base.dart';
+import 'package:pandasenp_flutter/view/widgets/app_base.dart';
 import 'package:pandasenp_flutter/view/widgets/ressource_card.dart';
 
 class RessourceListPage extends StatefulWidget {

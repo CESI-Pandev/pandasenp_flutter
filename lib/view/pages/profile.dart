@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/controllers/auth.dart';
 import 'package:pandasenp_flutter/model/user.dart';
-import 'package:pandasenp_flutter/view/pages/app_base.dart';
+import 'package:pandasenp_flutter/view/widgets/app_base.dart';
 import 'package:pandasenp_flutter/view/pages/login.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -54,7 +54,7 @@ class ProfilePage extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    currentUser.email,
+                    currentUser.email ?? '',
                     style: const TextStyle(
                       fontSize: 20,
                     ),

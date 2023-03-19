@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pandasenp_flutter/view/pages/home.dart';
 import 'package:pandasenp_flutter/view/pages/profile.dart';
 import 'package:pandasenp_flutter/view/pages/ressource_list.dart';
+import 'package:pandasenp_flutter/pages/conversation_list.dart';
 
 class AppBase extends StatelessWidget {
   final Widget body;
@@ -18,7 +18,7 @@ class AppBase extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, int> pageIndexes = {
       "Ressources": 0,
-      "Home": 1,
+      "Chat": 1,
       "Profile": 2,
     };
     
@@ -35,7 +35,7 @@ class AppBase extends StatelessWidget {
         child: body,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: pageIndexes[title]!,
+        currentIndex: pageIndexes[title] ?? 0,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.black.withOpacity(0.9),
         unselectedItemColor: Colors.grey,
@@ -68,7 +68,7 @@ class AppBase extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const HomePage(),
+                  builder: (context) => const UserList(),
                 ),
               );
               break;

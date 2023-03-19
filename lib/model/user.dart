@@ -1,8 +1,8 @@
 class User {
   final String id;
-  final String email;
-  final String firstName;
-  final String lastName;
+  final String? email;
+  final String? firstName;
+  final String? lastName;
   get fullName => '$firstName $lastName';
   // String? _avatar;
   // Future<File?>? get getAvatar => _avatar != null ? fileController.get(id: _avatar!) : null;
@@ -22,9 +22,9 @@ class User {
 
   User({
     required this.id,
-    required this.email,
-    required this.firstName,
-    required this.lastName,
+    this.email,
+    this.firstName,
+    this.lastName,
     this.avatar,
     this.description,
     this.tags,
