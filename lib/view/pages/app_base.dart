@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pandasenp_flutter/pages/home.dart';
-import 'package:pandasenp_flutter/pages/profile.dart';
-import 'package:pandasenp_flutter/pages/ressource_list.dart';
+import 'package:pandasenp_flutter/view/pages/home.dart';
+import 'package:pandasenp_flutter/view/pages/profile.dart';
+import 'package:pandasenp_flutter/view/pages/ressource_list.dart';
 
 class AppBase extends StatelessWidget {
   final Widget body;

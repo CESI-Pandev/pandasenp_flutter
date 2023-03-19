@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:markdown_widget/markdown_widget.dart';
 import 'package:pandasenp_flutter/extensions/date_time.dart';
 import 'package:pandasenp_flutter/model/ressource.dart';
+import 'package:pandasenp_flutter/view/widgets/fade.dart';
 
 class RessourceCardWidget extends StatelessWidget {
   final Ressource ressource;
@@ -31,10 +33,13 @@ class RessourceCardWidget extends StatelessWidget {
           ),
           const SizedBox(height: 16.0),
           Expanded(
-            child: Text(
-              ressource.content,
-              overflow: TextOverflow.fade,
-              style: const TextStyle(fontSize: 18.0),
+            child: FadeWidget(
+              child: Center(
+                child: MarkdownWidget(
+                  data: ressource.content,
+                  physics: const NeverScrollableScrollPhysics(),
+                ),
+              ),
             ),
           ),
           const Divider(),

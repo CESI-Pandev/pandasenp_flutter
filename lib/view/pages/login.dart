@@ -2,8 +2,8 @@ import 'package:directus/directus.dart';
 import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/controllers/auth.dart';
 import 'package:pandasenp_flutter/directus/directus.dart';
-import 'package:pandasenp_flutter/pages/home.dart';
-import 'package:pandasenp_flutter/pages/register.dart';
+import 'package:pandasenp_flutter/view/pages/home.dart';
+import 'package:pandasenp_flutter/view/pages/register.dart';
 
 
 class LoginPage extends StatelessWidget {

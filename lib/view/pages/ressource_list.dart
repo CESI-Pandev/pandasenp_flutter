@@ -5,8 +5,8 @@ import 'package:pandasenp_flutter/model/ressource.dart';
 import 'package:pandasenp_flutter/model/ressource_type.dart';
 import 'package:pandasenp_flutter/model/status.dart';
 import 'package:pandasenp_flutter/model/user.dart';
-import 'package:pandasenp_flutter/pages/app_base.dart';
-import 'package:pandasenp_flutter/pages/ressource_card.dart';
+import 'package:pandasenp_flutter/view/pages/app_base.dart';
+import 'package:pandasenp_flutter/view/widgets/ressource_card.dart';
 
 class RessourceListPage extends StatelessWidget {
   const RessourceListPage({super.key});
