@@ -1,4 +1,7 @@
 import 'package:pandasenp_flutter/model/user.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as ui;
+import 'package:uuid/uuid.dart';
+
 
 class Message {
   final User author;
@@ -39,4 +42,19 @@ class Message {
         'status': status,
         'text': text,
       };
+      
+  ui.TextMessage toTypeMessage() {
+    return ui.TextMessage(
+      id: const Uuid().v4(),
+      author: ui.User(
+        id: author.id,
+        firstName: author.firstName,
+        lastName: author.lastName,
+        imageUrl: author.avatar,
+      ),
+      text: text ?? '',
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
+  }
 }
