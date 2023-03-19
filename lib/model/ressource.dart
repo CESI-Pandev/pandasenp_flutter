@@ -38,7 +38,7 @@ class Ressource {
       userCreated: User.fromJson(json['user_created']),
       userUpdated: User.fromJson(json['user_updated']),
       dateCreated: DateTime.parse(json['date_created']),
-      dateUpdated: DateTime.parse(json['date_updated']),
+      dateUpdated: DateTime.parse(json['date_updated']??json['date_created']),
       type: RessourceType.fromJson(json['type']),
       category: Category.fromJson(json['category']),
       title: json['title'],

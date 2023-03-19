@@ -12,7 +12,7 @@ class RessourceCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 270,
+      height: 350,
       margin: const EdgeInsets.all(16.0),
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
@@ -38,6 +38,7 @@ class RessourceCardWidget extends StatelessWidget {
                 child: MarkdownWidget(
                   data: ressource.content,
                   physics: const NeverScrollableScrollPhysics(),
+                  selectable: false,
                 ),
               ),
             ),

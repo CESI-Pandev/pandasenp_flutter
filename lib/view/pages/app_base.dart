@@ -38,10 +38,6 @@ class AppBase extends StatelessWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.post_add),
-            label: 'Publish',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.chat),
             label: 'Chat',
           ),
@@ -56,7 +52,7 @@ class AppBase extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const HomePage(),
+                  builder: (context) => const RessourceListPage(),
                 ),
               );
               break;
@@ -64,19 +60,11 @@ class AppBase extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const RessourceListPage(),
-                ),
-              );
-              break;
-            case 2:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
                   builder: (context) => const HomePage(),
                 ),
               );
               break;
-            case 3:
+            case 2:
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

@@ -1,138 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/controllers/ressource.dart';
-import 'package:pandasenp_flutter/model/category.dart';
 import 'package:pandasenp_flutter/model/ressource.dart';
-import 'package:pandasenp_flutter/model/ressource_type.dart';
-import 'package:pandasenp_flutter/model/status.dart';
-import 'package:pandasenp_flutter/model/user.dart';
 import 'package:pandasenp_flutter/view/pages/app_base.dart';
 import 'package:pandasenp_flutter/view/widgets/ressource_card.dart';
 
-class RessourceListPage extends StatelessWidget {
+class RessourceListPage extends StatefulWidget {
   const RessourceListPage({super.key});
-  
 
+  @override
+  State<RessourceListPage> createState() => _RessourceListPageState();
+}
+
+class _RessourceListPageState extends State<RessourceListPage> {
   @override
   Widget build(BuildContext context) {
     final RessourceController ressourceController = RessourceController();
-    final User user = User(
-      id: "",
-      firstName: "John",
-      lastName: "Doe",
-      email: "",
-      status: "",
-    );
-
-    final List<Ressource> ressources = [
-      Ressource(
-        id: 1,
-        title: "Ressource 1",
-        content: "",
-        userCreated: user,
-        userUpdated: user,
-        dateCreated: DateTime.now(),
-        dateUpdated: DateTime.now(),
-        status: Status.published,
-        category: Category(
-          id: 1,
-          label: "Catégorie 1",
-        ),
-        type: RessourceType(
-          id: 1,
-          label: "Type 1",
-        ),
-      ),
-      Ressource(
-        id: 1,
-        title: "Ressource 1",
-        content: "",
-        userCreated: user,
-        userUpdated: user,
-        dateCreated: DateTime.now(),
-        dateUpdated: DateTime.now(),
-        status: Status.published,
-        category: Category(
-          id: 1,
-          label: "Catégorie 1",
-        ),
-        type: RessourceType(
-          id: 1,
-          label: "Type 1",
-        ),
-      ),
-      Ressource(
-        id: 1,
-        title: "Ressource 1",
-        content: "",
-        userCreated: user,
-        userUpdated: user,
-        dateCreated: DateTime.now(),
-        dateUpdated: DateTime.now(),
-        status: Status.published,
-        category: Category(
-          id: 1,
-          label: "Catégorie 1",
-        ),
-        type: RessourceType(
-          id: 1,
-          label: "Type 1",
-        ),
-      ),
-      Ressource(
-        id: 1,
-        title: "Ressource 1",
-        content: "",
-        userCreated: user,
-        userUpdated: user,
-        dateCreated: DateTime.now(),
-        dateUpdated: DateTime.now(),
-        status: Status.published,
-        category: Category(
-          id: 1,
-          label: "Catégorie 1",
-        ),
-        type: RessourceType(
-          id: 1,
-          label: "Type 1",
-        ),
-      ),
-      Ressource(
-        id: 1,
-        title: "Ressource 1",
-        content: "",
-        userCreated: user,
-        userUpdated: user,
-        dateCreated: DateTime.now(),
-        dateUpdated: DateTime.now(),
-        status: Status.published,
-        category: Category(
-          id: 1,
-          label: "Catégorie 1",
-        ),
-        type: RessourceType(
-          id: 1,
-          label: "Type 1",
-        ),
-      ),
-      Ressource(
-        id: 1,
-        title: "Ressource 1",
-        content: "",
-        userCreated: user,
-        userUpdated: user,
-        dateCreated: DateTime.now(),
-        dateUpdated: DateTime.now(),
-        status: Status.published,
-        category: Category(
-          id: 1,
-          label: "Catégorie 1",
-        ),
-        type: RessourceType(
-          id: 1,
-          label: "Type 1",
-        ),
-      ),
-    ];
     return AppBase(
       title: "Ressources",
       floatingActionButton: FloatingActionButton(
@@ -161,7 +43,13 @@ class RessourceListPage extends StatelessWidget {
             );
           }
 
-          if (snapshot.data == null || snapshot.data!.isEmpty) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Center(
+              child: Text("Erreur inconnue"),
+            );
+          }
+
+          if (snapshot.data!.isEmpty) {
             return const Center(
               child: Text("Aucune ressource trouvée"),
             );
@@ -169,11 +57,16 @@ class RessourceListPage extends StatelessWidget {
 
           List<Ressource> ressources = snapshot.data!;
 
-          return ListView.builder(
-            itemCount: ressources.length,
-            itemBuilder: (BuildContext context, int index) {
-              return RessourceCardWidget(ressource: ressources[index]);
+          return RefreshIndicator( 
+            onRefresh: () async {
+              setState(() {});
             },
+            child: ListView.builder(
+              itemCount: ressources.length,
+              itemBuilder: (BuildContext context, int index) {
+                return RessourceCardWidget(ressource: ressources[index]);
+              },
+            ),
           );
         }
       ),
