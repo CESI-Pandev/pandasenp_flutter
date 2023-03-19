@@ -71,7 +71,7 @@ class User {
     'status': status,
     'role': role,
     'last_page': lastPage,
-    'last_access': lastAccess.toIso8601String(),
+    // 'last_access': lastAccess.toIso8601String(),
   };
       
 }

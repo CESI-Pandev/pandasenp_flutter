@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/controllers/auth.dart';
 import 'package:pandasenp_flutter/model/user.dart';
-import 'package:pandasenp_flutter/pages/chat_screen.dart';
+import 'package:pandasenp_flutter/pages/chat.dart';
 
 class UserTileWidget extends StatelessWidget {
   UserTileWidget({required this.user, super.key});

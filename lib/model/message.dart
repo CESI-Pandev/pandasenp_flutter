@@ -1,7 +1,7 @@
 import 'package:pandasenp_flutter/model/user.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as ui;
 import 'package:uuid/uuid.dart';
-
+import 'package:pandasenp_flutter/controllers/user.dart';
 
 class Message {
   final User author;
@@ -13,7 +13,7 @@ class Message {
   final String? text;
   final String type = 'text';
 
-  const Message({
+  Message({
     required this.author,
     this.createdAt,
     required this.id,
@@ -23,15 +23,15 @@ class Message {
     this.updatedAt,
   });
 
-  Message.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        author = json['author'],
+  static UserController userController = UserController();
+  Message.fromJson(Map<String, dynamic> json) 
+      : id = json['id'].toString(),
+        author =  userController.getJsonById(json['author']),
         createdAt = json['createdAt'],
-        recipient = json['recipient'],
+        recipient = userController.getJsonById(json['recipient']),
         status = json['status'],
         text = json['text'],
         updatedAt = json['updatedAt'];
-  // != null ? DateTime.parse(json['last_access']) : DateTime.now();
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -42,7 +42,7 @@ class Message {
         'status': status,
         'text': text,
       };
-      
+
   ui.TextMessage toTypeMessage() {
     return ui.TextMessage(
       id: const Uuid().v4(),
