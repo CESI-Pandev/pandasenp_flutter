@@ -40,7 +40,7 @@ class UserController {
    getJsonById(id) {
     final user = getOneById(id);
     user.then((e) => e.toJson());
-    return user;
+    return user ;
   }
 
   dynamic directusToJson(DirectusUser instance) {

@@ -4,7 +4,7 @@ import 'package:uuid/uuid.dart';
 import 'package:pandasenp_flutter/controllers/user.dart';
 
 class Message {
-  final User author;
+  final User userCreated;
   final User recipient;
   final int? createdAt;
   final String id;
@@ -14,7 +14,7 @@ class Message {
   final String type = 'text';
 
   Message({
-    required this.author,
+    required this.userCreated,
     this.createdAt,
     required this.id,
     required this.recipient,
@@ -24,21 +24,22 @@ class Message {
   });
 
   static UserController userController = UserController();
-  Message.fromJson(Map<String, dynamic> json) 
+
+  Message.fromJson(Map<String, dynamic> json)
       : id = json['id'].toString(),
-        author =  userController.getJsonById(json['author']),
+        userCreated = User.fromJson(json['user_created']),
         createdAt = json['createdAt'],
-        recipient = userController.getJsonById(json['recipient']),
+        recipient = User.fromJson(json['recipient']),
         status = json['status'],
         text = json['text'],
         updatedAt = json['updatedAt'];
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'author': author,
+        'user_created': userCreated,
         'recipient': recipient,
-        'createdAt': createdAt,
-        'updatedAt': updatedAt,
+        'created_at': createdAt,
+        'updated_at': updatedAt,
         'status': status,
         'text': text,
       };
@@ -47,10 +48,10 @@ class Message {
     return ui.TextMessage(
       id: const Uuid().v4(),
       author: ui.User(
-        id: author.id,
-        firstName: author.firstName,
-        lastName: author.lastName,
-        imageUrl: author.avatar,
+        id: userCreated.id,
+        firstName: userCreated.firstName,
+        lastName: userCreated.lastName,
+        imageUrl: userCreated.avatar,
       ),
       text: text ?? '',
       createdAt: createdAt,

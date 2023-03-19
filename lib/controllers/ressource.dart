@@ -19,7 +19,7 @@ class RessourceController {
                 .data.toJson();
             ressourceJson['user_updated'] = (await directus!.users
                     .readOne(ressourceJson['user_updated']))
-                .data.toJson();
+                .data.toJson(); 
             ressourceJson['category'] = (await directus!
                     .items('category')
                     .readOne(ressourceJson['category'].toString()))
