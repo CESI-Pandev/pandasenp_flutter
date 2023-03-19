@@ -22,4 +22,16 @@ class Comment {
     required this.ressource,
   });
 
+  factory Comment.fromJson(Map<String, dynamic> json) {
+    return Comment(
+      id: json['id'],
+      status: statusFromString[json['status']]!,
+      content: json['content'],
+      userCreated: User.fromJson(json['user_created']),
+      userUpdated: User.fromJson(json['user_updated']),
+      dateCreated: DateTime.parse(json['date_created']),
+      dateUpdated: DateTime.parse(json['date_updated']),
+      ressource: json['ressource'],
+    );
+  }
 }

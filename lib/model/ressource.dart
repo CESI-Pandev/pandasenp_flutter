@@ -31,4 +31,21 @@ class Ressource {
     this.comments = const [],
   });
 
+  factory Ressource.fromJson(Map<String, dynamic> json) {
+    return Ressource(
+      id: json['id'],
+      status: statusFromString[json['status']]!,
+      userCreated: User.fromJson(json['user_created']),
+      userUpdated: User.fromJson(json['user_updated']),
+      dateCreated: DateTime.parse(json['date_created']),
+      dateUpdated: DateTime.parse(json['date_updated']),
+      type: RessourceType.fromJson(json['type']),
+      category: Category.fromJson(json['category']),
+      title: json['title'],
+      content: json['content'],
+      comments: json['comments'] != null
+        ? (json['comments'] as List).map<Comment>((comment) => Comment.fromJson(comment)).toList()
+        : [],
+    );
+  }
 }

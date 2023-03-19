@@ -10,7 +10,7 @@ class RessourceCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
+      height: 270,
       margin: const EdgeInsets.all(16.0),
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
@@ -30,10 +30,14 @@ class RessourceCardWidget extends StatelessWidget {
             style: const TextStyle(fontSize: 16.0, color: Colors.grey),
           ),
           const SizedBox(height: 16.0),
-          Text(
-            ressource.content,
-            style: const TextStyle(fontSize: 18.0),
+          Expanded(
+            child: Text(
+              ressource.content,
+              overflow: TextOverflow.fade,
+              style: const TextStyle(fontSize: 18.0),
+            ),
           ),
+          const Divider(),
           const SizedBox(height: 16.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
