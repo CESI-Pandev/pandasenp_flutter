@@ -5,22 +5,29 @@ import 'package:pandasenp_flutter/view/pages/ressource_list.dart';
 
 class AppBase extends StatelessWidget {
   final Widget body;
-  final String? title;
+  final String title;
   final Widget? floatingActionButton;
   const AppBase({
     super.key,
     required this.body,
-    this.title,
+    required this.title,
     this.floatingActionButton,
   });
 
   @override
   Widget build(BuildContext context) {
+    Map<String, int> pageIndexes = {
+      "Ressources": 0,
+      "Home": 1,
+      "Profile": 2,
+    };
+    
     return Scaffold(
       floatingActionButton: floatingActionButton,
       backgroundColor: const Color(0xFFEDECF2),
+
       appBar: AppBar(
-        title: Text("Pandasenp${title != null ? " - $title" : ""}"),
+        title: Text("Pandasenp - $title"),
         backgroundColor: Colors.black.withOpacity(0.7),
         automaticallyImplyLeading: false,
       ),
@@ -28,6 +35,7 @@ class AppBase extends StatelessWidget {
         child: body,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: pageIndexes[title]!,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.black.withOpacity(0.9),
         unselectedItemColor: Colors.grey,
