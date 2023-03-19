@@ -85,8 +85,16 @@ class NewRessourcePage extends StatelessWidget {
                       child: Text("Developement"),
                     ),
                     DropdownMenuItem(
-                      value: "Math",
+                      value: "math",
                       child: Text("Math"),
+                    ),
+                    DropdownMenuItem(
+                      value: "geography",
+                      child: Text("Geopgraphy"),
+                    ),
+                    DropdownMenuItem(
+                      value: "science",
+                      child: Text("Science"),
                     ),
                   ],
                   onChanged: (value) {},
