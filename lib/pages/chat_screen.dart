@@ -1,12 +1,9 @@
-import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:pandasenp_flutter/controllers/message.dart';
 import 'package:pandasenp_flutter/model/user.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:http/http.dart' as http;
@@ -215,14 +212,10 @@ class _ChatPageState extends State<ChatPage> {
 
   void _loadMessages() async {
     final messages = await messageController.getMessageByUser();
-    messages.forEach(e = types.Message e)
-    // final response = await rootBundle.loadString('assets/messages.json');
-    // final messages = (jsonDecode(response) as List)
-    //     .map((e) => types.Message.fromJson(e as Map<String, dynamic>))
-    //     .toList();
-
+    List<types.Message> typedMessages =
+        messages.map<types.Message>((e) => e.toTypeMessage()).toList();
     setState(() {
-      _messages = messages;
+      _messages = typedMessages;
     });
   }
 }
