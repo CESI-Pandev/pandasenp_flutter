@@ -3,6 +3,8 @@ import 'package:pandasenp_flutter/directus/directus.dart';
 import 'package:pandasenp_flutter/model/user.dart';
 
 class AuthController {
+
+  
   Future<void> login({
     required String email,
     required String password,
@@ -12,10 +14,10 @@ class AuthController {
       throw Exception('Directus not initialized');
     }
 
-    if (isLoggedIn) {
-      debugPrint('Already logged in');
-      throw Exception('User already logged in');
-    }
+    // if (isLoggedIn) {
+    //   debugPrint('Already logged in');
+    //   throw Exception('User already logged in');
+    // }
 
     await directus!.auth.login(
       email: email,
