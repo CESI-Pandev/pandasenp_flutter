@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/controllers/auth.dart';
 import 'package:pandasenp_flutter/model/user.dart';
-import 'package:pandasenp_flutter/pages/app_base.dart';
-import 'package:pandasenp_flutter/pages/login.dart';
+import 'package:pandasenp_flutter/view/widgets/app_base.dart';
+import 'package:pandasenp_flutter/view/pages/login.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -13,6 +13,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBase(
       title: "Profile",
+      index: profileIndex,
       body: FutureBuilder<User>(
         future: auth.currentUser,
         builder: (context, snapshot) {

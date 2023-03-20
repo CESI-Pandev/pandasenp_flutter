@@ -1,7 +1,6 @@
 import 'dart:async' show Future;
 
 import 'package:directus/directus.dart';
-import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/directus/directus.dart';
 import 'package:pandasenp_flutter/model/message.dart';
 

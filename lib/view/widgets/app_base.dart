@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:pandasenp_flutter/pages/conversation_list.dart';
-import 'package:pandasenp_flutter/pages/home.dart';
-import 'package:pandasenp_flutter/pages/profile.dart';
-import 'package:pandasenp_flutter/pages/ressource_list.dart';
+import 'package:pandasenp_flutter/view/pages/conversation_list.dart';
+import 'package:pandasenp_flutter/view/pages/profile.dart';
+import 'package:pandasenp_flutter/view/pages/ressource_list.dart';
+
+const ressourceListIndex = 0;
+const chatIndex = 1;
+const profileIndex = 2;
 
 class AppBase extends StatelessWidget {
   final Widget body;
-  final String? title;
+  final String title;
+  final int index;
   final Widget? floatingActionButton;
   const AppBase({
     super.key,
     required this.body,
-    this.title,
+    required this.title,
+    required this.index,
     this.floatingActionButton,
   });
 
@@ -21,7 +26,7 @@ class AppBase extends StatelessWidget {
       floatingActionButton: floatingActionButton,
       backgroundColor: const Color(0xFFEDECF2),
       appBar: AppBar(
-        title: Text("Pandasenp${title != null ? " - $title" : ""}"),
+        title: Text("Pandasenp - $title"),
         backgroundColor: Colors.black.withOpacity(0.7),
         automaticallyImplyLeading: false,
       ),
@@ -29,6 +34,7 @@ class AppBase extends StatelessWidget {
         child: body,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: index,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.black.withOpacity(0.9),
         unselectedItemColor: Colors.grey,
@@ -53,15 +59,7 @@ class AppBase extends StatelessWidget {
         ],
         onTap: (index) {
           switch (index) {
-            case 0:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomePage(),
-                ),
-              );
-              break;
-            case 1:
+            case ressourceListIndex:
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -69,15 +67,15 @@ class AppBase extends StatelessWidget {
                 ),
               );
               break;
-            case 2:
+            case chatIndex:
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const UserList(),
+                  builder: (context) => const ConversationListPage(),
                 ),
               );
               break;
-            case 3:
+            case profileIndex:
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

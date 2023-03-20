@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/controllers/auth.dart';
 import 'package:pandasenp_flutter/model/user.dart';
-import 'package:pandasenp_flutter/pages/chat.dart';
+import 'package:pandasenp_flutter/view/pages/chat.dart';
 
 class UserTileWidget extends StatelessWidget {
   UserTileWidget({required this.user, super.key});
@@ -33,7 +33,7 @@ class UserTileWidget extends StatelessWidget {
         return GestureDetector(
           onTap: () {
             if (currentUser.id == user.id) return;
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => ChatPage(
@@ -45,13 +45,18 @@ class UserTileWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Card(
-              color: Colors.blue,
+              color: Colors.black.withOpacity(0.7),
               margin: const EdgeInsets.only(
                   top: 12.0, bottom: 6.0, left: 20.0, right: 20.0),
               child: ListTile(
                 title: Text(
-                    user.firstName ?? user.email ?? anonyme),
-                subtitle: const Text("dernière envoi de la conversation"),
+                  user.firstName ?? user.email ?? anonyme,
+                  style: const TextStyle(color: Colors.white),
+                ),
+                subtitle: const Text(
+                  "dernière envoi de la conversation",
+                  style: TextStyle(color: Colors.grey),
+                ),
               ),
             ),
           ),
