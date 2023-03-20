@@ -13,6 +13,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBase(
       title: "Profile",
+      index: profileIndex,
       body: FutureBuilder<User>(
         future: auth.currentUser,
         builder: (context, snapshot) {

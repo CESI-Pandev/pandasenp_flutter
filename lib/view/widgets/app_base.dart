@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:pandasenp_flutter/view/pages/conversation_list.dart';
 import 'package:pandasenp_flutter/view/pages/profile.dart';
 import 'package:pandasenp_flutter/view/pages/ressource_list.dart';
-import 'package:pandasenp_flutter/pages/conversation_list.dart';
+
+const ressourceListIndex = 0;
+const chatIndex = 1;
+const profileIndex = 2;
 
 class AppBase extends StatelessWidget {
   final Widget body;
   final String title;
+  final int index;
   final Widget? floatingActionButton;
   const AppBase({
     super.key,
     required this.body,
     required this.title,
+    required this.index,
     this.floatingActionButton,
   });
 
   @override
   Widget build(BuildContext context) {
-    Map<String, int> pageIndexes = {
-      "Ressources": 0,
-      "Chat": 1,
-      "Profile": 2,
-    };
-    
     return Scaffold(
       floatingActionButton: floatingActionButton,
       backgroundColor: const Color(0xFFEDECF2),
-
       appBar: AppBar(
         title: Text("Pandasenp - $title"),
         backgroundColor: Colors.black.withOpacity(0.7),
@@ -35,7 +34,7 @@ class AppBase extends StatelessWidget {
         child: body,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: pageIndexes[title] ?? 0,
+        currentIndex: index,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.black.withOpacity(0.9),
         unselectedItemColor: Colors.grey,
@@ -56,7 +55,7 @@ class AppBase extends StatelessWidget {
         ],
         onTap: (index) {
           switch (index) {
-            case 0:
+            case ressourceListIndex:
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -64,15 +63,15 @@ class AppBase extends StatelessWidget {
                 ),
               );
               break;
-            case 1:
+            case chatIndex:
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const UserList(),
+                  builder: (context) => const ConversationListPage(),
                 ),
               );
               break;
-            case 2:
+            case profileIndex:
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

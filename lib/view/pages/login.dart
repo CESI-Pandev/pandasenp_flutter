@@ -1,8 +1,8 @@
 import 'package:directus/directus.dart';
 import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/controllers/auth.dart';
-import 'package:pandasenp_flutter/view/pages/home.dart';
 import 'package:pandasenp_flutter/view/pages/register.dart';
+import 'package:pandasenp_flutter/view/pages/ressource_list.dart';
 
 
 class LoginPage extends StatelessWidget {
@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
       Navigator.pushReplacement(
         context!,
         MaterialPageRoute(
-          builder: (context) => const HomePage(),
+          builder: (context) => const RessourceListPage(),
         ),
       );
     } on DirectusError catch (e) {
