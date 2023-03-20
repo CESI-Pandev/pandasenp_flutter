@@ -35,19 +35,19 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) => AppBase(
-        title: "Chating with ${widget.user.firstName}",
-        index: chatIndex,
-        body: Chat(
-          messages: _messages,
-          onAttachmentPressed: _handleAttachmentPressed,
-          onMessageTap: _handleMessageTap,
-          onPreviewDataFetched: _handlePreviewDataFetched,
-          onSendPressed: _handleSendPressed,
-          showUserAvatars: true,
-          showUserNames: true,
-          user: _user,
-        ),
-      );
+    title: "Chating with ${widget.user.firstName}",
+    index: chatIndex,
+    body: Chat(
+      messages: _messages,
+      onAttachmentPressed: _handleAttachmentPressed,
+      onMessageTap: _handleMessageTap,
+      onPreviewDataFetched: _handlePreviewDataFetched,
+      onSendPressed: _handleSendPressed,
+      showUserAvatars: true,
+      showUserNames: true,
+      user: _user,
+    ),
+  );
 
   void _addMessage(types.Message message) {
     setState(() {
