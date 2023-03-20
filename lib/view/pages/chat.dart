@@ -35,7 +35,8 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) => AppBase(
-    title: 'Chat',
+    title: "Chating with ${widget.user.firstName}",
+    index: chatIndex,
     body: Chat(
       messages: _messages,
       onAttachmentPressed: _handleAttachmentPressed,

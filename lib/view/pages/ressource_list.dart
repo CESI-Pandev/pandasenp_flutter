@@ -16,6 +16,7 @@ class _RessourceListPageState extends State<RessourceListPage> {
   Widget build(BuildContext context) {
     final RessourceController ressourceController = RessourceController();
     return AppBase(
+      index: ressourceListIndex,
       title: "Ressources",
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black.withOpacity(0.8),
