@@ -18,6 +18,8 @@ class MessageController {
           .readMany(
             filters: Filters({
               'user_created': Filter.isIn([sender.id, recipient.id]),
+              'recipient': Filter.isIn([sender.id, recipient.id]),
+              'status': Filter.eq('published'),
             }),
           )
           .then((value) => value.data);
@@ -45,7 +47,9 @@ class MessageController {
     } on DirectusError catch (e) {
       throw Exception(e.message);
     }
-    return messagesJson.map((e) => Message.fromJson(toJson(e))).toList();
+    List<Message> messages =
+        messagesJson.map((e) => Message.fromJson(e)).toList();
+    return messages;
   }
 
   Future<void> sendMessage({

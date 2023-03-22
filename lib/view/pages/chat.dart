@@ -1,15 +1,10 @@
-import 'dart:io';
-
 import 'package:pandasenp_flutter/controllers/auth.dart';
 import 'package:pandasenp_flutter/controllers/message.dart';
 import 'package:pandasenp_flutter/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
-import 'package:http/http.dart' as http;
-import 'package:open_filex/open_filex.dart';
 import 'package:pandasenp_flutter/view/widgets/app_base.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
 class ChatPage extends StatefulWidget {
@@ -57,6 +52,7 @@ class _ChatPageState extends State<ChatPage> {
 
           return Chat(
             messages: messages,
+
             onSendPressed: (types.PartialText message) {
               messages = _handleSendPressed(message, chatCurrentUser, messages);
               messageController
@@ -66,9 +62,9 @@ class _ChatPageState extends State<ChatPage> {
                 message: message.text,
               )
                   .then((_) {
-                _getMessages().then((value) {
+                _getMessages().then((values) {
                   setState(() {
-                    messages = value;
+                    messages = values;
                   });
                 });
               });

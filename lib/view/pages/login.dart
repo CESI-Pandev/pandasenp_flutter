@@ -1,9 +1,9 @@
 import 'package:directus/directus.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/controllers/auth.dart';
 import 'package:pandasenp_flutter/view/pages/register.dart';
 import 'package:pandasenp_flutter/view/pages/ressource_list.dart';
-
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -20,8 +20,7 @@ class LoginPage extends StatelessWidget {
         email: emailController.text,
         password: passwordController.text,
       );
-      
-      
+
       Navigator.pushReplacement(
         context!,
         MaterialPageRoute(
@@ -31,7 +30,9 @@ class LoginPage extends StatelessWidget {
     } on DirectusError catch (e) {
       ScaffoldMessenger.of(context!).showSnackBar(
         SnackBar(
-          content: Text(e.message.toString()),
+          content: Text(
+            '${e.message} ${kDebugMode ? ': ${e.dioError?.error}' : ''}',
+          ),
         ),
       );
     } catch (e) {
@@ -54,11 +55,11 @@ class LoginPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
               child: Column(
-                mainAxisAlignment : MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
                     "Welcome",
@@ -82,9 +83,9 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                    
+
                   // Form
-                    
+
                   // Email
                   Container(
                     decoration: BoxDecoration(
@@ -109,11 +110,11 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                    
+
                   const SizedBox(
                     height: 20,
                   ),
-                    
+
                   // Password
                   Container(
                     decoration: BoxDecoration(
@@ -139,11 +140,11 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                    
+
                   const SizedBox(
                     height: 30,
                   ),
-                    
+
                   // Login Button and register
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -173,11 +174,11 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                    
+
                       const SizedBox(
                         width: 20,
                       ),
-                    
+
                       // Register
                       Container(
                         height: 50,
@@ -188,7 +189,11 @@ class LoginPage extends StatelessWidget {
                         ),
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const RegisterPage()));
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,

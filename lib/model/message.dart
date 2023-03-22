@@ -6,16 +6,16 @@ import 'package:pandasenp_flutter/controllers/user.dart';
 class Message {
   final User userCreated;
   final User recipient;
-  final int? createdAt;
+  final DateTime createdAt;
   final String id;
   final String? status;
-  final int? updatedAt;
+  final DateTime? updatedAt;
   final String? text;
   final String type = 'text';
 
   Message({
     required this.userCreated,
-    this.createdAt,
+    required this.createdAt,
     required this.id,
     required this.recipient,
     this.status,
@@ -28,18 +28,20 @@ class Message {
   Message.fromJson(Map<String, dynamic> json)
       : id = json['id'].toString(),
         userCreated = User.fromJson(json['user_created']),
-        createdAt = json['createdAt'],
+        createdAt = DateTime.parse(json['date_created']),
         recipient = User.fromJson(json['recipient']),
         status = json['status'],
         text = json['text'],
-        updatedAt = json['updatedAt'];
+        updatedAt = json['date_updated'] != null
+            ? DateTime.parse(json['date_updated'])
+            : null;
 
   Map<String, dynamic> toJson() => {
         'id': id,
         'user_created': userCreated,
         'recipient': recipient,
-        'created_at': createdAt,
-        'updated_at': updatedAt,
+        'date_created': createdAt,
+        'date_updated': updatedAt,
         'status': status,
         'text': text,
       };
@@ -54,8 +56,8 @@ class Message {
         imageUrl: userCreated.avatar,
       ),
       text: text ?? '',
-      createdAt: createdAt,
-      updatedAt: updatedAt,
+      createdAt: createdAt.millisecondsSinceEpoch,
+      updatedAt: updatedAt?.millisecondsSinceEpoch,
     );
   }
 }
