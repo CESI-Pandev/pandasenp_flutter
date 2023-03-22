@@ -16,6 +16,10 @@ class MessageController {
       messagesJson = await directus!
           .items('message')
           .readMany(
+            query: Query(
+              limit: 32,
+              sort: ['-date_created'],
+            ),
             filters: Filters({
               'user_created': Filter.isIn([sender.id, recipient.id]),
               'recipient': Filter.isIn([sender.id, recipient.id]),
