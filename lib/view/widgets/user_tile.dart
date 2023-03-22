@@ -37,7 +37,7 @@ class UserTileWidget extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => ChatPage(
-                  user: user,
+                  recipient: user,
                 ),
               ),
             );

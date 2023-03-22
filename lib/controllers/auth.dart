@@ -3,34 +3,21 @@ import 'package:pandasenp_flutter/directus/directus.dart';
 import 'package:pandasenp_flutter/model/user.dart';
 
 class AuthController {
-
-  
   Future<void> login({
     required String email,
     required String password,
     String? otp,
   }) async {
-    if (directus == null) {
-      throw Exception('Directus not initialized');
-    }
-
-    // if (isLoggedIn) {
-    //   debugPrint('Already logged in');
-    //   throw Exception('User already logged in');
-    // }
-
     await directus!.auth.login(
       email: email,
       password: password,
       otp: otp,
     );
+
+    await setCurrentUser();
   }
 
   Future<void> logout() async {
-    if (directus == null) {
-      throw Exception('Directus not initialized');
-    }
-
     if (!isLoggedIn) {
       debugPrint('No user to log out');
       return;
@@ -40,16 +27,18 @@ class AuthController {
   }
 
   bool get isLoggedIn {
-    if (directus == null) {
-      throw Exception('Directus not initialized');
-    }
     return directus!.auth.isLoggedIn;
   }
 
-  Future<User> get currentUser async {
-    if (directus == null) {
-      throw Exception('Directus not initialized');
+  Future<void> setCurrentUser() async {
+    if (!isLoggedIn) {
+      debugPrint('No user to set');
+      return;
     }
-    return User.fromJson((await directus!.auth.currentUser!.read()).data.toJson());
+  }
+
+  Future<User>? get currentUser async {
+    return User.fromJson(
+        (await directus!.auth.currentUser!.read()).data.toJson());
   }
 }

@@ -3,38 +3,68 @@ import 'dart:async' show Future;
 import 'package:directus/directus.dart';
 import 'package:pandasenp_flutter/directus/directus.dart';
 import 'package:pandasenp_flutter/model/message.dart';
+import 'package:pandasenp_flutter/model/user.dart';
 
 class MessageController {
-  Future<List<Message>> getMessageByUser() async {
+  Future<List<Message>> getMessageByConversation(
+      {required User sender, required User recipient}) async {
     if (directus == null) {
       throw Exception('Directus not initialized');
     }
     List<Map<String, dynamic>> messagesJson;
     try {
+      messagesJson = await directus!
+          .items('message')
+          .readMany(
+            filters: Filters({
+              'user_created': Filter.isIn([sender.id, recipient.id]),
+            }),
+          )
+          .then((value) => value.data);
       messagesJson = await Future.wait(
-        (await directus!.items('message').readMany()).data.map(
+        messagesJson.map(
           (messagesJson) async {
-            messagesJson['user_created'] =
-                (await directus!.users.readOne(messagesJson['user_created']))
-                    .data
-                    .toJson();
-            messagesJson['recipient'] =
-                (await directus!.users.readOne(messagesJson['recipient']))
-                    .data
-                    .toJson();
+            messagesJson['user_created'] = await directus!.users
+                .readOne(
+                  messagesJson['user_created'],
+                )
+                .then(
+                  (value) => value.data.toJson(),
+                );
+            messagesJson['recipient'] = await directus!.users
+                .readOne(
+                  messagesJson['recipient'],
+                )
+                .then(
+                  (value) => value.data.toJson(),
+                );
             return messagesJson;
           },
         ),
       );
-      // messages = (await directus!.items('message').readMany(
-      //         // filter: Filters({'id': Filter.isIn(['1', '2'])})
-      //         ))
-      //     .data
-      //     ;
     } on DirectusError catch (e) {
       throw Exception(e.message);
     }
     return messagesJson.map((e) => Message.fromJson(toJson(e))).toList();
+  }
+
+  Future<void> sendMessage({
+    required User sender,
+    required User recipient,
+    required String message,
+  }) async {
+    if (directus == null) {
+      throw Exception('Directus not initialized');
+    }
+    try {
+      await directus!.items('message').createOne({
+        'user_created': sender.id,
+        'recipient': recipient.id,
+        'text': message,
+      });
+    } on DirectusError catch (e) {
+      throw Exception(e.message);
+    }
   }
 
   Map<String, dynamic> toJson(instance) {
