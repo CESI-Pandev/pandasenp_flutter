@@ -2,7 +2,7 @@
     package="pandev.pandasenp_flutter">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="pandasenp_flutter"
+        android:label="Pandasenp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
