@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
+const String kRegisterPageRoute = '/register';
+const String kRegisterPageTitle = 'Register';
+
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEDECF2),
       appBar: AppBar(
-        title: const Text("Register"),
+        title: const Text(kRegisterPageTitle),
         backgroundColor: Colors.black.withOpacity(0.7),
       ),
       body: SafeArea(
@@ -194,7 +195,6 @@ class RegisterPage extends StatelessWidget {
                   ),
                 ],
               ),
-
             ],
           ),
         ),

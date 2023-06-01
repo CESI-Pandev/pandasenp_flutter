@@ -4,6 +4,9 @@ import 'package:pandasenp_flutter/model/ressource.dart';
 import 'package:pandasenp_flutter/view/widgets/app_base.dart';
 import 'package:pandasenp_flutter/view/widgets/ressource_card.dart';
 
+const String kRessourceListPageRoute = '/ressource_list';
+const String kRessourceListPageTitle = 'Ressources';
+
 class RessourceListPage extends StatefulWidget {
   const RessourceListPage({super.key});
 
@@ -17,7 +20,7 @@ class _RessourceListPageState extends State<RessourceListPage> {
     final RessourceController ressourceController = RessourceController();
     return AppBase(
       index: ressourceListIndex,
-      title: "Ressources",
+      title: kRessourceListPageTitle,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black.withOpacity(0.8),
         onPressed: () {},
@@ -58,7 +61,7 @@ class _RessourceListPageState extends State<RessourceListPage> {
 
           List<Ressource> ressources = snapshot.data!;
 
-          return RefreshIndicator( 
+          return RefreshIndicator(
             onRefresh: () async {
               setState(() {});
             },
@@ -69,7 +72,7 @@ class _RessourceListPageState extends State<RessourceListPage> {
               },
             ),
           );
-        }
+        },
       ),
     );
   }

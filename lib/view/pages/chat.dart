@@ -7,6 +7,8 @@ import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:pandasenp_flutter/view/widgets/app_base.dart';
 import 'package:uuid/uuid.dart';
 
+const String kChatPageRoute = '/chat';
+
 class ChatPage extends StatefulWidget {
   final User recipient;
   const ChatPage({super.key, required this.recipient});
