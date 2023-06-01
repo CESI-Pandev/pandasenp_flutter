@@ -1,11 +1,18 @@
 const String kAnonymousUserIdentifier = 'Anon';
 
+/// Theme of the user either light, dark or auto
 enum UserTheme {
+  /// Light theme
   light,
+
+  /// Dark theme
   dark,
+
+  /// System theme (automatic)
   auto,
 }
 
+/// Status of the user either draft, invited, active, suspended or archived
 enum UserStatus {
   draft,
   invited,
@@ -14,11 +21,21 @@ enum UserStatus {
   archived,
 }
 
+/// An user within the app
 class User {
+  /// Id of the user used in Directus
   final String id;
+
+  /// Email of the user
   final String? email;
+
+  /// If the user has an email
   bool get hasEmail => email != null;
+
+  /// First name of the user
   final String? firstName;
+
+  /// Last name of the user
   final String? lastName;
 
   /// If the user has a full name
@@ -34,24 +51,41 @@ class User {
 
     return null;
   }
+
   // String? _avatar;
   // Future<File?>? get getAvatar => _avatar != null ? fileController.get(id: _avatar!) : null;
   // set avatar(File file) {
   //   _avatar = file.id;
   // }
+
+  /// Avatar of the user
   final String? avatar;
+
+  /// description of the user (bio)
   final String? description;
+
+  /// Tags of the user
   final List<String>? tags;
+
+  /// Language of the user
   final String? language;
 
   /// Theme of the user (dark, light or auto)
   final UserTheme? theme;
+
+  /// If the user has email notifications enabled
   final bool emailNotifications;
 
   /// Status of the user (draft, invited, active, suspended or archived)
   final UserStatus? status;
+
+  /// Role of the user
   final String? role;
+
+  /// Last page visited by the user
   final String? lastPage;
+
+  /// Last time the user accessed the app
   late final DateTime lastAccess;
 
   /// Identifier for user in the ui.
@@ -99,6 +133,7 @@ class User {
     return identifier[0];
   }
 
+  /// Creates a new [User]
   User({
     required this.id,
     this.email,
