@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/view/pages/login.dart';
 
+const String kWelcomePageRoute = '/';
+const String kWelcomePageTitle = 'Welcome';
+
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:pandasenp_flutter/view/widgets/app_base.dart';
+
+const String kRegisterPageRoute = '/register';
+const String kRegisterPageTitle = 'Register';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFEDECF2),
-      appBar: AppBar(
-        title: const Text("Register"),
-        backgroundColor: Colors.black.withOpacity(0.7),
-      ),
+    return AppBase(
+      title: kRegisterPageTitle,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -194,7 +193,6 @@ class RegisterPage extends StatelessWidget {
                   ),
                 ],
               ),
-
             ],
           ),
         ),

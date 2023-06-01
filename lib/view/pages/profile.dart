@@ -4,6 +4,9 @@ import 'package:pandasenp_flutter/model/user.dart';
 import 'package:pandasenp_flutter/view/widgets/app_base.dart';
 import 'package:pandasenp_flutter/view/pages/login.dart';
 
+const String kProfilePageRoute = '/profile';
+const String kProfilePageTitle = 'Profile';
+
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
 
@@ -12,7 +15,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBase(
-      title: "Profile",
+      title: kProfilePageTitle,
       index: kProfileIndex,
       body: FutureBuilder<User>(
         future: auth.currentUser,

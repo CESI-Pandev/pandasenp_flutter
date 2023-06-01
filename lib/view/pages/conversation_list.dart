@@ -5,6 +5,9 @@ import 'package:pandasenp_flutter/model/user.dart';
 import 'package:pandasenp_flutter/view/widgets/app_base.dart';
 import 'package:pandasenp_flutter/view/widgets/chat_tile.dart';
 
+const String kConversationListPageRoute = '/conversation_list';
+const String kConversationListPageTitle = 'Chat';
+
 class ConversationListPage extends StatefulWidget {
   const ConversationListPage({super.key});
 
@@ -19,8 +22,8 @@ class _ConversationListPageState extends State<ConversationListPage> {
   Widget build(BuildContext context) {
     final AuthController auth = AuthController();
     return AppBase(
-      title: "Chat",
-      index: chatIndex,
+      title: kConversationListPageTitle,
+      index: kChatIndex,
       body: FutureBuilder<User>(
           future: auth.currentUser,
           builder: (context, snapshot) {

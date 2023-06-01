@@ -7,6 +7,8 @@ import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:pandasenp_flutter/view/widgets/app_base.dart';
 import 'package:uuid/uuid.dart';
 
+const String kChatPageRoute = '/chat';
+
 String chatPageTitle(String recipientIdentifier) =>
     "Chat with $recipientIdentifier";
 
@@ -38,7 +40,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return AppBase(
       title: chatPageTitle(widget.recipient.identifier),
-      index: chatIndex,
+      index: kChatIndex,
       body: FutureBuilder(
         future: auth.currentUser,
         builder: (context, snapshot) {

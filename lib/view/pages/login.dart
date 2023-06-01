@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:pandasenp_flutter/controllers/auth.dart';
 import 'package:pandasenp_flutter/view/pages/register.dart';
 import 'package:pandasenp_flutter/view/pages/ressource_list.dart';
+import 'package:pandasenp_flutter/view/widgets/app_base.dart';
+
+const String kLoginPageRoute = '/login';
+const String kLoginPageTitle = 'Login';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -47,12 +51,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFEDECF2),
-      appBar: AppBar(
-        title: const Text("Login"),
-        backgroundColor: Colors.black.withOpacity(0.7),
-      ),
+    return AppBase(
+      title: kLoginPageTitle,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
