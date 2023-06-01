@@ -13,7 +13,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBase(
       title: "Profile",
-      index: profileIndex,
+      index: kProfileIndex,
       body: FutureBuilder<User>(
         future: auth.currentUser,
         builder: (context, snapshot) {
@@ -46,7 +46,7 @@ class ProfilePage extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    currentUser.fullName,
+                    currentUser.fullNameOrIdentifier,
                     style: const TextStyle(
                       fontSize: 20,
                     ),

@@ -28,7 +28,7 @@ class RessourceCardWidget extends StatelessWidget {
           ),
           const SizedBox(height: 8.0),
           Text(
-            ressource.userCreated.fullName,
+            ressource.userCreated.identifier,
             style: const TextStyle(fontSize: 16.0, color: Colors.grey),
           ),
           const SizedBox(height: 16.0),

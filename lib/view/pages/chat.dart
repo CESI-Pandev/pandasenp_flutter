@@ -7,6 +7,9 @@ import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:pandasenp_flutter/view/widgets/app_base.dart';
 import 'package:uuid/uuid.dart';
 
+String chatPageTitle(String recipientIdentifier) =>
+    "Chat with $recipientIdentifier";
+
 class ChatPage extends StatefulWidget {
   final User recipient;
   const ChatPage({super.key, required this.recipient});
@@ -34,7 +37,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return AppBase(
-      title: "Chating with ${widget.recipient.firstName}",
+      title: chatPageTitle(widget.recipient.identifier),
       index: chatIndex,
       body: FutureBuilder(
         future: auth.currentUser,
