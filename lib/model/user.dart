@@ -14,10 +14,19 @@ enum UserTheme {
 
 /// Status of the user either draft, invited, active, suspended or archived
 enum UserStatus {
+  /// Draft status
   draft,
+
+  /// Invited status
   invited,
+
+  /// Active status
   active,
+
+  /// Suspended status
   suspended,
+
+  /// Archived status
   archived,
 }
 
