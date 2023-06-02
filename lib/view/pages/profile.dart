@@ -46,7 +46,7 @@ class ProfilePage extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    currentUser.fullName,
+                    currentUser.fullNameOrIdentifier,
                     style: const TextStyle(
                       fontSize: 20,
                     ),
